@@ -33,4 +33,4 @@ const showBooks = (array) => {
   }
 };
 
-export { showBooks, emptyBooks };
+export default showBooks;
