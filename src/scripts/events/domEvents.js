@@ -23,7 +23,7 @@ const domEvents = (uid) => {
     if (e.target.id.includes('add-book-btn')) {
       console.warn('ADD BOOK');
       // const [, bookFirebaseKey] = e.target.id.split('--');
-      addBookForm(uid);
+      addBookForm({}, uid);
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
@@ -31,8 +31,7 @@ const domEvents = (uid) => {
       // console.warn('EDIT BOOK', e.target.id);
       // console.warn(e.target.id.split('--'));
       const [, firebaseKey] = e.target.id.split('--');
-
-      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj, uid));
+      getSingleBook(firebaseKey).then((bookObj) => addBookForm(uid, bookObj));
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
@@ -43,7 +42,6 @@ const domEvents = (uid) => {
     // CLICK EVENT FOR VIEW AUTHOR DETAILS
     if (e.target.id.includes('view-author-btn')) {
       const [, authorFirebaseKey] = e.target.id.split('--');
-
       viewAuthorDetails(authorFirebaseKey).then((authorBookObject) => viewAuthor(authorBookObject));
     }
 
