@@ -38,18 +38,18 @@ const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // FIXME: DELETE AUTHOR
-const deleteSingleAuthor = (firebaseKey, uid) => new Promise((resolve, reject) => {
+const deleteSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/authors/${firebaseKey}.json`)
     .then(() => {
-      getAuthors(uid).then((authorsArray) => resolve(authorsArray));
+      getAuthors(firebaseKey.uid).then((authorsArray) => resolve(authorsArray));
     })
     .catch((error) => reject(error));
 });
 
 // FIXME: UPDATE AUTHOR
-const updateAuthor = (authorObj, uid) => new Promise((resolve, reject) => {
+const updateAuthor = (authorObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/authors/${authorObj.firebaseKey}.json`, authorObj)
-    .then(() => getAuthors(uid).then(resolve))
+    .then(() => getAuthors(authorObj.uid).then(resolve))
     .catch(reject);
 });
 
