@@ -1,7 +1,7 @@
 import { favoriteAuthors, getAuthors } from '../../api/authorData';
 import { booksOnSale, getBooks } from '../../api/bookData';
-import { emptyAuthors, showAuthors } from '../components/pages/authors';
-import { showBooks } from '../components/pages/books';
+import showAuthors from '../components/pages/authors';
+import showBooks from '../components/pages/books';
 import signOut from '../helpers/auth/signOut';
 
 // navigation events
@@ -26,13 +26,7 @@ const navigationEvents = (uid) => {
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
     console.warn('CLICKED AUTHORS');
-    getAuthors().then((authorsArray) => {
-      if (authorsArray.length !== 0) {
-        showAuthors(authorsArray);
-      } else if (authorsArray === 0) {
-        emptyAuthors(authorsArray);
-      }
-    });
+    getAuthors(uid).then((authorsArray) => showAuthors(authorsArray));
   });
 
   // FAVORITE AUTHORS

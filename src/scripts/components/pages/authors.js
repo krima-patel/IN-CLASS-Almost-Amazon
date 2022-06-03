@@ -36,4 +36,4 @@ const showAuthors = (array) => {
   }
 };
 
-export { showAuthors, emptyAuthors };
+export default showAuthors;
